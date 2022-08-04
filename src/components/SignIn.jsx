@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,11 +12,18 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-import {useDispatch} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import {login} from '../actions/index';
 import Swal from 'sweetalert2';
+
+import {login,getCharacters} from '../actions/index';
+import {useNavigate} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+
+const container ={
+  background: '#A1F2E6',
+  width: 'max-content',
+  height: '650px',
+  
+}
 
 function Copyright(props) {
   return (
@@ -33,36 +40,44 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-
 export default function SignIn() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-   const dispatch = useDispatch() 
-   const navigate = useNavigate()
 
-    const handleSubmit = (event) => {
-    const dataEmail = 'jcrnietos@gmail.com';
-    const dataPassword = '12345'
+  const [input, setInput] = useState({
+    email : "jcrnietos@gmail.com",
+    password : "12345"
+  })
+  const handleSubmit = (event) => {
+    //const dateEmail= "jcrnietos@gmail.com"
+   // const datePassword = "12345"
+    event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
-   
-    if(email === dataEmail && password === dataPassword){
-         dispatch(login())
-         navigate('/home')
+      //setInput({
+    const email= data.get('email')
+    const password= data.get('password')
+   // });
+    console.log(input)
+
+    if(input.email === email && input.password === password){
+        navigate("/home")
+        dispatch(login())
+        dispatch(getCharacters())
     }else{
       Swal.fire({
-        icon:'error',
-        title:'oops',
-        text:'email o password'
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'error',
+        confirmButtonText: 'Cool'
       })
-      //return 'fdsd'
     }
   };
 
-
- return (
+  return (
+    <Container sx={container}>
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container  component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -109,20 +124,20 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Entrar
+              Ingresar
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to={'/form'} variant="body2">
+                <Link to={'/signup'} variant="body2">
                   Ha olvidado tu contraseña?
                 </Link>
               </Grid>
               <Grid item>
-               
-                <Link href="http://localhost:3000/form" variant="body2">
-                  {"No tienes una cuenta? Inscribirse"}
+                <Link to={'/signup'} >
+                <Link href="/form" variant="body2">
+                  {"No tienes una cuenta? Registrarse"}
                 </Link>
-                
+                </Link>
               </Grid>
             </Grid>
           </Box>
@@ -130,5 +145,6 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </Container>
   );
 }

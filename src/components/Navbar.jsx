@@ -6,12 +6,15 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 //import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+//import SearchIcon from '@mui/icons-material/Search';
 import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {getName} from '../actions/index';
+import {useNavigate} from 'react-router-dom';
+import { getCharacters} from '../actions/index'
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,23 +59,35 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const link={
+  
+}
+
 export default function Navbar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [name, setName] = useState("") 
 
-  function handleName (e){
+  function handleName (e) {
      e.preventDefault();
      setName(e.target.value)
      //console.log(name)
   }
 
-  function handleSubmit (e){
+  function handleSubmit (e) {
     e.preventDefault();
     dispatch(getName(name))
+    navigate('/filter')
     console.log('esto es dispatch',name)
   }
+
+  function handleClick (e) {
+    e.preventDefault();
+    dispatch(getCharacters())
+    navigate('/home')
+  }
   return (
-    <div className='container-navbar'>
+    <Grid md={12} xs={12} sm={12}>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -91,21 +106,10 @@ export default function Navbar() {
          className='input-busqueda'
          id='search'
          />
+         
      <button className="boton-busqueda" type='submit' onClick={(e)=>handleSubmit(e)}>Buscar</button>
       </div> 
-            {/* <Search onChange={(e)=>handleSubmit(e)}  >
-            <SearchIconWrapper >
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              onChange={(e)=>handleName(e)}
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-
-            />
-          </Search>  */}
-            {/* <MenuIcon /> */}
-          </IconButton>
+         </IconButton>
           <Typography
             variant="h6"
             noWrap
@@ -114,13 +118,26 @@ export default function Navbar() {
           >
             PROYECTO INDIVIDUAL JUAN CRUZ NIETO
           </Typography>
+          <button  onClick={(e) => handleClick(e)}>Volver a cargar Personajes</button>
          
-          <Link href="http://localhost:3000/" variant="body2">
+          <Link href="http://localhost:3000/" variant="body2" sx={link}>
                   Cerrar Sesion
              </Link>
         </Toolbar>
       </AppBar>
     </Box>
-    </div>
+    </Grid>
   );
 }
+
+ {/* <Search onClick={(e)=>handleSubmit(e)}  >
+            <SearchIconWrapper >
+              <SearchIcon  />
+            </SearchIconWrapper>
+            <StyledInputBase
+              onChange={(e)=>handleName(e)}
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+
+            />  
+          </Search>  */}

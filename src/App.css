@@ -1,4 +1,12 @@
 .App {
   text-align: center;
+  height: 100vw;
+  text-align: center;
+  background-image: url(https://img.freepik.com/foto-gratis/utensilios-cocina-tazas-madera-sobre-fondo-textura-pared-ladrillo-blanco_45281-626.jpg?w=1380);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: "#66999";
 }
 

@@ -1,22 +1,29 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Home from './components/Home';
 import Detail from './components/Detail';
+import FilterCharacter from './components/FilterCharacter';
+import PrivateRoute from './components/PrivateRoute';
+
 
 function App() {
   return (
-   <BrowserRouter>
+ 
     <div className="App">
-       <Routes>
+    <Routes>
        <Route  path='/' element={<SignIn/>}/>
        <Route  path='/form' element={<SignUp/>}/>
        <Route  path='/home' element={<Home/>}/>
+       <Route  path='/filter' element={<FilterCharacter/>}/>
        <Route  path='/character/:id' element={<Detail/>}/>
-       </Routes>
+       {/* <Route path="private/*" element={<PrivateRoute />} /> */}
+     </Routes>
+    
        
     </div>
-    </BrowserRouter>
+    
+    
   );
 }
 

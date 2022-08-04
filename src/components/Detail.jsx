@@ -26,6 +26,7 @@ function Detail() {
  return (
     <div className='container-detail'>
     <div className='container-description' >
+   
     <Card sx={{ maxWidth: 400 }}>
     <CardMedia
       component="img"
@@ -51,6 +52,7 @@ function Detail() {
     Volver a Página Principal
 </Button>
  </Link>
+ 
 </div>
   </div>
   )

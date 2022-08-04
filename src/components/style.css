@@ -1,0 +1,34 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #1976d2;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* .contenedor-home{
+    background-color: rgb(157, 180, 207);
+    margin-top: 23px;
+  } */
+
+  /* .container-filter{
+    background-color: rgb(157, 180, 207);
+    margin-top: 23px;
+    height: 100vp;
+  } */
+
+  .cards :hover {
+    transform: scale(1.02);
+}
+
+.container-general {
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: black;
+}

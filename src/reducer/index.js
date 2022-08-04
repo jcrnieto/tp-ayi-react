@@ -1,9 +1,28 @@
 
 const initialState = {
-    characters:[],
-    character:[],
+   
+    character:{
+      id:"",
+      name: "",
+      species:"",
+      status:"",
+      type:"",
+    },
+    characters:[{
+      id:"",
+      name: "",
+      species:"",
+      status:"",
+      type:"",
+    }],
     login:false,
-    name:[]
+    name:[{
+      id:"",
+      name: "",
+      species:"",
+      status:"",
+      type:"",
+    }],
  }
  
  function rootReducer (state = initialState, action) {

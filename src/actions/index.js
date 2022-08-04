@@ -7,10 +7,11 @@ export function getCharacters () {
     return async function (dispatch) {
        try{
          let json = await axios.get('https://rickandmortyapi.com/api/character')
-        // console.log(json.data.results)
+         let payload = await json.data.results
+        console.log('payload',payload)
          return dispatch({
             type: 'GET_CHARACTERS',
-            payload: json.data.results
+            payload: payload
          })
        }catch(error){
           console.log(error)
@@ -57,7 +58,11 @@ export function getName (title) {
    return async function (dispatch) {
       try{
          let json = await axios.get('https://rickandmortyapi.com/api/character/?name=' + title)
-         console.log('actions',json)
+         console.log('actions',json.data.results)
+      
+
+
+
          return dispatch({
             type: 'GET_NAME',
             payload: json.data.results
