@@ -9,6 +9,8 @@ import InputBase from '@mui/material/InputBase';
 //import SearchIcon from '@mui/icons-material/Search';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
@@ -60,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const link={
-  
+ background_color: 'black',
 }
 
 export default function Navbar() {
@@ -120,8 +122,10 @@ export default function Navbar() {
           </Typography>
           <button  onClick={(e) => handleClick(e)}>Volver a cargar Personajes</button>
          
-          <Link href="http://localhost:3000/" variant="body2" sx={link}>
-                  Cerrar Sesion
+          <Link href="http://localhost:3000/" variant="body2" >
+          <Stack spacing={2} direction="row">
+              <Button sx={link} variant="text">Cerrar Sesión</Button>
+        </Stack>
              </Link>
         </Toolbar>
       </AppBar>
@@ -141,3 +145,6 @@ export default function Navbar() {
 
             />  
           </Search>  */}
+
+
+

@@ -10,12 +10,14 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import {getId} from '../actions/index';
+import {getId,login} from '../actions/index';
+import AccessDenied from './AccessDenied'
 
 
 function Detail() {
  const dispatch = useDispatch();
  const character = useSelector( state => state.character)
+ const login = useSelector( state => state.login)
  //console.log('esto es useselector',character)
  const {id} = useParams();
 
@@ -24,6 +26,9 @@ function Detail() {
  }, [dispatch,id])
  
  return (
+  <>
+  {
+    character !== undefined && login? (
     <div className='container-detail'>
     <div className='container-description' >
    
@@ -42,19 +47,24 @@ function Detail() {
     <CardActions>
       <Button size="small">Estado : {character.status}</Button>  
       <Button size="small">Especie :{character.species}</Button>
-    </CardActions>
-  </Card>
-  </div>
-
-<div className='button'>
-  <Link to={'/home'}>
+      <Link to={'/home'}>
 <Button variant="contained" disableElevation>
     Volver a Página Principal
 </Button>
  </Link>
  
+    </CardActions>
+  </Card>
+  </div>
+
+<div className='button'>
+ 
 </div>
   </div>
+    ): <AccessDenied/>
+
+  }
+  </>
   )
 }
 

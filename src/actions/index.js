@@ -1,6 +1,5 @@
-
-
 import axios from 'axios';
+//const {API_URL} = process.env
 
 
 export function getCharacters () {
@@ -8,7 +7,7 @@ export function getCharacters () {
        try{
          let json = await axios.get('https://rickandmortyapi.com/api/character')
          let payload = await json.data.results
-        console.log('payload',payload)
+        //console.log('payload',payload)
          return dispatch({
             type: 'GET_CHARACTERS',
             payload: payload

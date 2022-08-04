@@ -8,17 +8,6 @@
     text-align: center;
     padding: 10px;
   }
-  
-  /* .contenedor-home{
-    background-color: rgb(157, 180, 207);
-    margin-top: 23px;
-  } */
-
-  /* .container-filter{
-    background-color: rgb(157, 180, 207);
-    margin-top: 23px;
-    height: 100vp;
-  } */
 
   .cards :hover {
     transform: scale(1.02);
@@ -31,4 +20,16 @@
     background-attachment: fixed;
     background-size: cover;
     background-color: black;
+}
+
+.container-detail{
+  background-color: aqua;
+  height: 100vw;
+  text-align: center;
+}
+
+.container-description{
+  padding-top: 50px;
+  margin-left: 350px;
+  margin-right: auto;
 }
